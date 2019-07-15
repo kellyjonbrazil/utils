@@ -12,7 +12,7 @@ serial0.fileType = "pipe"
 serial0.pipe.endPoint = "server"
 serial0.yieldOnMsrRead = "TRUE"
 serial0.startConnected = "TRUE"
-serial0.fileName = "/tmp/serial”
+serial0.fileName = "/tmp/serial"
 ```
 
 ## wwwhostip.py
