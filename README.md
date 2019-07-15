@@ -17,3 +17,10 @@ serial0.fileName = "/tmp/serial"
 
 ## wwwhostip.py
 This is a simple python web server that will output the server's hostname and local IP address. This tool is good for testing load balancing (e.g. on k8s ingress, AWS ELB, etc.) to demonstrate that multiple web servers are responding.
+
+Sample request and response:
+
+```
+$ curl localhost
+hostname: www.test.com   ip: 192.168.1.221
+```
