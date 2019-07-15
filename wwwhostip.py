@@ -9,7 +9,7 @@ class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         self.server_name = socket.gethostname()
         # for mac compatibility
-        self.server_name = self.server_name + '.local'
+        # self.server_name = self.server_name + '.local'
         self.server_ip = socket.gethostbyname(self.server_name)
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
