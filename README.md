@@ -27,3 +27,5 @@ Sample request and response:
 $ curl localhost
 hostname: www.test.com   ip: 192.168.1.221
 ```
+
+For more a more advanced version, see `microtest` at https://github.com/kellyjonbrazil/microtest
