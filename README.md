@@ -15,6 +15,9 @@ serial0.startConnected = "TRUE"
 serial0.fileName = "/tmp/serial"
 ```
 
+## resizeterm.sh
+Useful to have in the home directory or path when using vmserial (above) or real serial interfaces when logging into appliances. Allows terminal applications to display using whatever arbitrary terminal size you have set for your window.
+
 ## wwwhostip.py
 This is a simple python web server that will output the server's hostname and local IP address. This tool is good for testing load balancing (e.g. on k8s ingress, AWS ELB, etc.) to demonstrate that multiple web servers are responding.
 
