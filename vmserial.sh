@@ -11,19 +11,19 @@
 # serial0.fileName = "/tmp/serial”
 
 serialPort="/tmp/serial"
-sudo rm $0.log
+sudo rm /tmp/$0.log
 echo "Connecting to $serialPort..."
-sudo socat -d -d -lf $0.log $serialPort PTY &
+sudo socat -d -d -lf /tmp/$0.log $serialPort PTY &
 
 echo "Getting port..."
 sleep 3
 
-ttyPort=$(grep "PTY is" $0.log | cut -f 7 -d " ")
+ttyPort=$(grep "PTY is" /tmp/$0.log | cut -f 7 -d " ")
 
 if [[ $ttyPort == "" ]]; then
   echo "Couldn't get a PTY"
   echo
-  cat $0.log
+  cat /tmp/$0.log
   exit 1
 fi
 
