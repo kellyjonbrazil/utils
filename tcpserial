@@ -1,0 +1,52 @@
+#!/bin/bash
+# Connect to a virtual serial port via TCP Port on a VM
+# Requires socat
+
+# Virtual Box
+# Create a serial port with the following settings:
+# Port Mode: TCP
+# Connect to existing pipe/socket: NO
+# Path/Address: <TCP PORT NUMBER>
+
+serialHost=$1
+serialPort=$2
+
+if [[ -z $serialHost ]]; then
+  echo "Please enter the destination hostname/IP"
+  exit
+fi
+
+if [[ -z $serialPort ]]; then
+  echo "Please enter the destination TCP Port"
+  exit
+fi
+
+logFile="/tmp/$0-$1-$2.log"
+sudo rm "$logFile"
+echo "Connecting to $serialHost:$serialPort..."
+sudo socat -d -d -lf "$logFile" TCP4:$serialHost:$serialPort PTY &
+
+echo "Getting port..."
+sleep 3
+
+socatPid=$(grep "opening connection to" "$logFile" | tr "[" " " | tr "]" " " | cut -f 4 -d " ")
+ttyPort=$(grep "PTY is" "$logFile" | cut -f 7 -d " ")
+
+if [[ $ttyPort == "" ]]; then
+  echo "Couldn't get a PTY"
+  echo
+  cat "$logFile"
+  exit 1
+fi
+
+echo "Socat PID $socatPid"
+echo "Using port $ttyPort"
+echo
+sleep 1
+
+# Use any terminal program you like:
+# sudo screen -U $ttyPort 115200
+sudo picocom -b115200 $ttyPort
+
+# cleanup
+sudo kill $socatPid
