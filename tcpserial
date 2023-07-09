@@ -42,7 +42,6 @@ fi
 echo "Socat PID $socatPid"
 echo "Using port $ttyPort"
 echo
-sleep 1
 
 # Use any terminal program you like:
 # sudo screen -U $ttyPort 115200
