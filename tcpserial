@@ -42,10 +42,13 @@ fi
 echo "Socat PID $socatPid"
 echo "Using port $ttyPort"
 echo
+# sleep 1
 
 # Use any terminal program you like:
 # sudo screen -U $ttyPort 115200
 sudo picocom -b115200 $ttyPort
 
 # cleanup
-sudo kill $socatPid
+if [ -n "$(ps -p $socatPid -o pid=)" ]; then
+  sudo kill $socatPid
+fi
